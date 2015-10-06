@@ -30,23 +30,21 @@
         <tomcat.version>7.0.53</tomcat.version>
     </properties>
 
-    <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <url>http://msinexus.msidev.local/nexus/content/repositories/releases/</url>
-            <uniqueVersion>false</uniqueVersion>
-            <layout>default</layout>
-            <name>MSI Repository</name>
-        </repository>
-        <snapshotRepository>
-            <uniqueVersion>true</uniqueVersion>
-            <id>snapshots</id>
-            <name>MSI Snapshot Repository</name>
-            <layout>default</layout>
-            <url>http://msinexus.msidev.local/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.3</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <repositories>
         <repository>
             <id>activiti-enterprise-releases</id>
